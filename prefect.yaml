@@ -3,7 +3,7 @@ prefect-version: 3.4.13
 
 pull:
   - prefect.deployments.steps.git_clone:
-      repository: jimid27/kroger-auto-cart-loader
+      repository: https://github.com/jimid27/kroger-auto-cart-loader
       branch: main
 deployments:
   - name: kroger-auto-cart-loader
