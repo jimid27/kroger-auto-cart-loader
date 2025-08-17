@@ -1,6 +1,5 @@
 """
-Kroger API Prefect Flow with Prefect Blocks for Configuration Storage
-Uses Prefect blocks instead of local files for better portability and security.
+Simple Application that adds items to a Kroger cart. Meant to be run on a schedule with regularly updated items.
 """
 
 import requests
