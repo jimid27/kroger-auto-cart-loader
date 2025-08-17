@@ -1,0 +1,28 @@
+name: kroger-auto-cart-loader
+prefect-version: 3.4.13
+
+pull:
+  - prefect.deployments.steps.git_clone:
+      repository: jimid27/kroger-auto-cart-loader
+      branch: main
+deployments:
+  - name: kroger-auto-cart-loader
+    description: Automatically update the cart with the items defined in the parameters.
+    flow_name: kroger-add-to-cart-flow
+    schedule: "0 14 * * 0"
+    parameters:
+      items:
+        - upc: "0001111041700" # Kroger 2% milk
+          quantity: 1
+        - upc: "0065708206040" # Kroger sourdough loaf
+          quantity: 1
+        - upc: "0007835555000" # Greek God's Plain Greek Yogurt
+          quantity: 1
+        - upc: "0000000004011" # Bananas
+          quantity: 2
+    entrypoint: "flow.py:kroger_add_to_cart_flow"
+    work_pool: 
+      name: managed-pool
+      job_variables:
+        env:
+          EXTRA_PIP_PACKAGES: cryptography requests
